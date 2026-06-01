@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benin Dougles Daniel D | Data Analyst</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg:       #f8fafd;
+            --bg2:      #eef2f9;
+            --white:    #ffffff;
+            --blue:     #1e40af;
+            --blue-mid: #2563eb;
+            --blue-lt:  #dbeafe;
+            --orange:   #f97316;
+            --orange-lt:#fff7ed;
+            --text:     #374151;
+            --text-lt:  #6b7280;
+            --heading:  #111827;
+            --border:   #e5e7eb;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg2); }
+        ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            height: 64px; display: flex; align-items: center;
+            justify-content: space-between; padding: 0 3rem;
+        }
+        .nav-logo { font-size: 1.1rem; font-weight: 800; color: var(--blue); }
+        .nav-logo span { color: var(--orange); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--text); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--blue); }
+        .nav-switch {
+            font-size: 0.8rem; padding: 0.4rem 0.9rem;
+            background: var(--blue); color: #fff; border-radius: 20px;
+            text-decoration: none; font-weight: 600; transition: all 0.2s;
+        }
+        .nav-switch:hover { background: #1d3aa0; transform: translateY(-1px); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            padding: 6rem 3rem 3rem; position: relative; overflow: hidden;
+            background: linear-gradient(135deg, #f0f4ff 0%, #fafbff 50%, #fff8f5 100%);
+        }
+        .hero-deco {
+            position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+        }
+        .deco-circle {
+            position: absolute; border-radius: 50%; opacity: 0.07;
+        }
+        .deco-1 { width: 500px; height: 500px; background: var(--blue); top: -150px; right: -100px; }
+        .deco-2 { width: 300px; height: 300px; background: var(--orange); bottom: -50px; left: -80px; }
+        .deco-dots {
+            position: absolute; top: 80px; left: 40px;
+            display: grid; grid-template-columns: repeat(8,1fr); gap: 18px;
+        }
+        .deco-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--blue); opacity: 0.15; }
+
+        .hero-inner { max-width: 1100px; width: 100%; margin: 0 auto; position: relative; z-index: 1; }
+        .hero-layout { display: flex; align-items: center; gap: 5rem; }
+        .hero-text { flex: 1; }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--orange-lt); border: 1px solid #fed7aa;
+            color: var(--orange); border-radius: 20px;
+            padding: 0.3rem 0.85rem; font-size: 0.8rem; font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-image-wrap {
+            position: relative; flex-shrink: 0;
+        }
+        .hero-image {
+            width: 220px; height: 220px; border-radius: 24px; overflow: hidden;
+            box-shadow: 0 24px 60px rgba(30,64,175,0.18), 0 4px 20px rgba(0,0,0,0.08);
+            border: 3px solid #fff;
+        }
+        .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+        .img-badge {
+            position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--blue); color: #fff; font-size: 0.72rem; font-weight: 700;
+            padding: 0.35rem 1rem; border-radius: 20px; white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(30,64,175,0.35);
+        }
+
+        .hero h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 800; color: var(--heading); line-height: 1.1; margin-bottom: 0.75rem; }
+        .hero h1 .accent { color: var(--blue); }
+        .hero-subtitle { font-size: 1.1rem; color: var(--blue-mid); font-weight: 600; margin-bottom: 1.25rem; }
+        .hero-bio { font-size: 0.98rem; line-height: 1.8; color: var(--text); max-width: 560px; margin-bottom: 2rem; }
+        .hero-bio strong { color: var(--heading); }
+
+        .hero-stats { display: flex; gap: 2.5rem; margin-bottom: 2.5rem; }
+        .stat { text-align: left; }
+        .stat-num { font-size: 2rem; font-weight: 800; color: var(--blue); line-height: 1; }
+        .stat-label { font-size: 0.72rem; color: var(--text-lt); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
+
+        .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.6rem; border-radius: 10px; font-weight: 700; font-size: 0.88rem; text-decoration: none; transition: all 0.22s; }
+        .btn-blue { background: var(--blue); color: #fff; box-shadow: 0 4px 14px rgba(30,64,175,0.3); }
+        .btn-blue:hover { background: #1d3aa0; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,64,175,0.35); }
+        .btn-ghost { border: 1.5px solid var(--border); color: var(--text); background: #fff; }
+        .btn-ghost:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+
+        /* ── SECTION ── */
+        .sec { padding: 5.5rem 3rem; max-width: 1100px; margin: 0 auto; }
+        .sec-tag { font-size: 0.8rem; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.4rem; }
+        .sec-title { font-size: clamp(1.8rem, 3vw, 2.3rem); font-weight: 800; color: var(--heading); margin-bottom: 0.4rem; }
+        .sec-bar { width: 52px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--blue), var(--orange)); margin-bottom: 3rem; }
+
+        /* ── ABOUT ── */
+        .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: start; }
+        .about-text p { color: var(--text); line-height: 1.85; margin-bottom: 1rem; font-size: 0.97rem; }
+        .hl { color: var(--blue); font-weight: 600; }
+
+        .domain-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.5rem; }
+        .chip { display: flex; align-items: center; gap: 0.4rem; background: var(--blue-lt); color: var(--blue); font-size: 0.8rem; font-weight: 600; padding: 0.4rem 0.85rem; border-radius: 8px; }
+        .chip i { font-size: 0.75rem; }
+
+        .impact-cards { display: flex; flex-direction: column; gap: 1rem; }
+        .impact-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem 1.4rem; display: flex; gap: 1rem; align-items: flex-start; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: all 0.22s; }
+        .impact-card:hover { box-shadow: 0 8px 24px rgba(30,64,175,0.1); transform: translateY(-2px); border-color: #bfdbfe; }
+        .impact-ico { width: 40px; height: 40px; border-radius: 10px; background: var(--blue-lt); display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 1rem; flex-shrink: 0; }
+        .impact-content h4 { font-size: 0.88rem; font-weight: 700; color: var(--heading); margin-bottom: 0.2rem; }
+        .impact-content p { font-size: 0.8rem; color: var(--text-lt); line-height: 1.5; }
+
+        /* ── SKILLS ── */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.5rem; }
+        .skill-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: all 0.22s; }
+        .skill-card:hover { box-shadow: 0 8px 24px rgba(30,64,175,0.1); transform: translateY(-3px); border-color: #bfdbfe; }
+        .sk-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+        .sk-ico { width: 38px; height: 38px; border-radius: 10px; background: var(--blue-lt); display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 0.95rem; }
+        .sk-name { font-size: 0.9rem; font-weight: 700; color: var(--heading); }
+        .sk-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+        .sk-tag { font-size: 0.76rem; font-weight: 600; padding: 0.3rem 0.65rem; border-radius: 6px; background: var(--bg2); color: var(--text); transition: all 0.2s; }
+        .sk-tag:hover { background: var(--blue-lt); color: var(--blue); }
+
+        /* ── EXPERIENCE ── */
+        .timeline { position: relative; padding-left: 2.25rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--blue), var(--orange), rgba(30,64,175,0.1)); }
+        .tl-item { position: relative; margin-bottom: 2.75rem; }
+        .tl-dot { position: absolute; left: -2.5rem; top: 0.35rem; width: 14px; height: 14px; border-radius: 50%; background: var(--blue); border: 3px solid var(--bg); box-shadow: 0 0 0 3px rgba(30,64,175,0.2); }
+        .tl-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: all 0.22s; }
+        .tl-card:hover { box-shadow: 0 8px 24px rgba(30,64,175,0.1); border-color: #bfdbfe; }
+        .tl-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.35rem; }
+        .tl-role { font-size: 1.05rem; font-weight: 800; color: var(--heading); }
+        .tl-badge { font-size: 0.76rem; font-weight: 700; padding: 0.28rem 0.8rem; border-radius: 20px; background: var(--orange-lt); color: var(--orange); border: 1px solid #fed7aa; white-space: nowrap; }
+        .tl-company { font-size: 0.88rem; color: var(--blue); font-weight: 600; margin-bottom: 0.2rem; }
+        .tl-date { font-size: 0.78rem; color: var(--text-lt); margin-bottom: 1rem; }
+        .tl-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+        .tl-list li { padding-left: 1.5rem; position: relative; font-size: 0.9rem; line-height: 1.65; color: var(--text); }
+        .tl-list li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
+        .tl-list strong { color: var(--heading); }
+
+        /* ── DOMAINS ── */
+        .domains-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 1.5rem; }
+        .domain-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: all 0.22s; position: relative; overflow: hidden; }
+        .domain-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--orange)); }
+        .domain-card:hover { box-shadow: 0 8px 24px rgba(30,64,175,0.12); transform: translateY(-3px); }
+        .domain-emoji { font-size: 2.2rem; margin-bottom: 1rem; }
+        .domain-name { font-size: 1rem; font-weight: 800; color: var(--heading); margin-bottom: 0.5rem; }
+        .domain-desc { font-size: 0.86rem; color: var(--text-lt); line-height: 1.65; }
+
+        /* ── EDU ── */
+        .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 1.5rem; }
+        .edu-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: all 0.22s; }
+        .edu-card:hover { box-shadow: 0 8px 24px rgba(30,64,175,0.1); transform: translateY(-3px); border-color: #bfdbfe; }
+        .edu-ico { width: 42px; height: 42px; border-radius: 12px; background: var(--blue-lt); display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 1.15rem; margin-bottom: 1rem; }
+        .edu-deg { font-size: 0.93rem; font-weight: 800; color: var(--heading); margin-bottom: 0.25rem; }
+        .edu-school { font-size: 0.82rem; color: var(--blue); font-weight: 600; margin-bottom: 0.65rem; }
+        .edu-meta { display: flex; justify-content: space-between; font-size: 0.77rem; color: var(--text-lt); }
+
+        /* ── AWARDS ── */
+        .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; }
+        .award-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: all 0.22s; display: flex; gap: 1.25rem; align-items: flex-start; }
+        .award-card:hover { box-shadow: 0 8px 24px rgba(30,64,175,0.1); transform: translateY(-3px); }
+        .award-ico-wrap { width: 52px; height: 52px; border-radius: 14px; background: linear-gradient(135deg, var(--blue-lt), #fef9c3); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
+        .award-title { font-size: 1rem; font-weight: 800; color: var(--heading); margin-bottom: 0.4rem; }
+        .award-desc { font-size: 0.86rem; color: var(--text-lt); line-height: 1.65; }
+
+        /* ── CONTACT ── */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+        .contact-intro h3 { font-size: 1.4rem; font-weight: 800; color: var(--heading); margin-bottom: 0.85rem; }
+        .contact-intro p { font-size: 0.95rem; color: var(--text-lt); line-height: 1.8; margin-bottom: 2rem; }
+        .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+        .c-link { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--text); padding: 1rem 1.25rem; background: #fff; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); transition: all 0.22s; }
+        .c-link:hover { border-color: #bfdbfe; color: var(--blue); transform: translateX(5px); box-shadow: 0 6px 16px rgba(30,64,175,0.1); }
+        .c-link .ci { width: 38px; height: 38px; border-radius: 10px; background: var(--blue-lt); display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 0.95rem; flex-shrink: 0; }
+        .c-link span { font-size: 0.88rem; font-weight: 500; }
+
+        .cta-card { background: linear-gradient(135deg, var(--blue), #1d4ed8); border-radius: 18px; padding: 2.5rem; color: #fff; }
+        .cta-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.75rem; }
+        .cta-card p { font-size: 0.9rem; opacity: 0.85; line-height: 1.7; margin-bottom: 1.75rem; }
+        .cta-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #fff; color: var(--blue); padding: 0.75rem 1.5rem; border-radius: 10px; font-weight: 700; font-size: 0.88rem; text-decoration: none; transition: all 0.2s; }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+        /* ── FOOTER ── */
+        footer { text-align: center; padding: 2rem 3rem; border-top: 1px solid var(--border); font-size: 0.82rem; color: var(--text-lt); }
+        footer strong { color: var(--blue); }
+
+        /* ── ANIMATIONS ── */
+        .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        .fade-up.show { opacity: 1; transform: translateY(0); }
+
+        /* ── COUNTER ── */
+        .counting { transition: all 0.3s; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav { padding: 0 1.25rem; }
+            .nav-links { display: none; }
+            .hero { padding: 6rem 1.25rem 3rem; }
+            .hero-layout { flex-direction: column; text-align: center; align-items: center; }
+            .hero-stats { justify-content: center; }
+            .hero-btns { justify-content: center; }
+            .sec { padding: 4rem 1.25rem; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-logo">Benin<span>.</span></div>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#domains">Domains</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="../data-engineer/index.html" class="nav-switch">Switch → Engineer</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="home">
+    <div class="hero-deco">
+        <div class="deco-circle deco-1"></div>
+        <div class="deco-circle deco-2"></div>
+        <div class="deco-dots" id="dots"></div>
+    </div>
+    <div class="hero-inner">
+        <div class="hero-layout">
+            <div class="hero-text">
+                <div class="hero-badge"><i class="fas fa-chart-line"></i> Data Analyst · Conversight.ai</div>
+                <h1>Benin Dougles<br><span class="accent">Daniel D</span></h1>
+                <div class="hero-subtitle">Turning data into decisions</div>
+                <p class="hero-bio">
+                    Detail-oriented Data Professional with <strong>21 months of experience</strong>
+                    designing intelligent data models and delivering business insights. Specialized in
+                    <strong>Finance, Supply Chain, and Construction</strong> analytics, with a passion
+                    for automating workflows that scale with a single click.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-num counting" data-target="21">0</div>
+                        <div class="stat-label">Months Exp</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num counting" data-target="3">0</div>
+                        <div class="stat-label">Domains</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num counting" data-target="2">0</div>
+                        <div class="stat-label">Awards</div>
+                    </div>
+                </div>
+                <div class="hero-btns">
+                    <a href="../assets/resume.pdf" download class="btn btn-blue">
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>
+                    <a href="https://linkedin.com/in/benin-daniel-6a3944295" target="_blank" class="btn btn-ghost">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="mailto:benin.daniel@conversight.ai" class="btn btn-ghost">
+                        <i class="fas fa-envelope"></i> Email Me
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image-wrap">
+                <div class="hero-image">
+                    <img src="../assets/profile.jpeg" alt="Benin Dougles Daniel D">
+                </div>
+                <div class="img-badge">📊 Data Analyst</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<div class="sec fade-up" id="about">
+    <div class="sec-tag">About Me</div>
+    <h2 class="sec-title">The Story Behind the Data</h2>
+    <div class="sec-bar"></div>
+    <div class="about-grid">
+        <div class="about-text">
+            <p>
+                I'm <span class="hl">Benin Dougles Daniel D</span>, a Data Analyst at
+                <span class="hl">Conversight.ai</span>, based in Coimbatore, Tamil Nadu.
+                I transform raw, complex datasets into clear, actionable narratives that
+                drive business strategy.
+            </p>
+            <p>
+                I engineered a <span class="hl">"Single-Click" provisioning system</span>
+                that fully automates customer data environment setup — eliminating manual
+                onboarding and dramatically reducing time-to-value for new clients.
+            </p>
+            <p>
+                My work spans <span class="hl">Finance, Supply Chain, and Construction</span>
+                sectors, where I design robust multi-tenant data models that ensure performance,
+                integrity, and scalability.
+            </p>
+            <div class="domain-chips">
+                <div class="chip"><i class="fas fa-dollar-sign"></i> Finance</div>
+                <div class="chip"><i class="fas fa-truck"></i> Supply Chain</div>
+                <div class="chip"><i class="fas fa-hard-hat"></i> Construction</div>
+            </div>
+        </div>
+        <div class="impact-cards">
+            <div class="impact-card">
+                <div class="impact-ico"><i class="fas fa-bolt"></i></div>
+                <div class="impact-content">
+                    <h4>Single-Click Automation</h4>
+                    <p>Automated full customer provisioning, cutting onboarding time from hours to seconds</p>
+                </div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-ico"><i class="fas fa-cubes"></i></div>
+                <div class="impact-content">
+                    <h4>Robust Data Modeling</h4>
+                    <p>Designed data models for Finance, Supply Chain & Construction BI</p>
+                </div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-ico"><i class="fas fa-shield-alt"></i></div>
+                <div class="impact-content">
+                    <h4>Data Integrity at Scale</h4>
+                    <p>Optimized multi-tenant architectures for high performance and integrity</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SKILLS -->
+<div class="sec fade-up" id="skills" style="background: var(--bg2); max-width: 100%; padding-left: 0; padding-right: 0;">
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 3rem;">
+        <div class="sec-tag">Skills</div>
+        <h2 class="sec-title">Tools & Technologies</h2>
+        <div class="sec-bar"></div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="sk-head">
+                    <div class="sk-ico"><i class="fas fa-code"></i></div>
+                    <div class="sk-name">Languages</div>
+                </div>
+                <div class="sk-tags">
+                    <span class="sk-tag">Python</span>
+                    <span class="sk-tag">SQL</span>
+                    <span class="sk-tag">MySQL</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="sk-head">
+                    <div class="sk-ico"><i class="fas fa-table"></i></div>
+                    <div class="sk-name">Analytics & BI</div>
+                </div>
+                <div class="sk-tags">
+                    <span class="sk-tag">Data Modeling</span>
+                    <span class="sk-tag">Business Intelligence</span>
+                    <span class="sk-tag">ETL / ELT</span>
+                    <span class="sk-tag">Data Provisioning</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="sk-head">
+                    <div class="sk-ico"><i class="fab fa-google"></i></div>
+                    <div class="sk-name">Cloud & Infra</div>
+                </div>
+                <div class="sk-tags">
+                    <span class="sk-tag">GCP Cloud Run</span>
+                    <span class="sk-tag">NATS Messaging</span>
+                    <span class="sk-tag">Docker</span>
+                    <span class="sk-tag">Serverless</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="sk-head">
+                    <div class="sk-ico"><i class="fas fa-stream"></i></div>
+                    <div class="sk-name">Data Engineering</div>
+                </div>
+                <div class="sk-tags">
+                    <span class="sk-tag">Apache Airflow</span>
+                    <span class="sk-tag">Pipeline Design</span>
+                    <span class="sk-tag">Warehouse Mgmt</span>
+                    <span class="sk-tag">Schema Design</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="sec fade-up" id="experience">
+    <div class="sec-tag">Experience</div>
+    <h2 class="sec-title">Professional Journey</h2>
+    <div class="sec-bar"></div>
+    <div class="timeline">
+        <div class="tl-item">
+            <div class="tl-dot" style="background:var(--orange)"></div>
+            <div class="tl-card">
+                <div class="tl-top">
+                    <div class="tl-role">Data Analyst</div>
+                    <div class="tl-badge">Jul 2025 – Present</div>
+                </div>
+                <div class="tl-company">Conversight.ai</div>
+                <div class="tl-date">6 Months · Coimbatore, Tamil Nadu</div>
+                <ul class="tl-list">
+                    <li><strong>Automated Provisioning:</strong> Engineered a "Single-Click" end-to-end customer provisioning system, automating the setup of data environments and reducing manual onboarding time to near zero.</li>
+                    <li><strong>Data Modeling:</strong> Designed and implemented robust data models for Finance, Supply Chain, and Construction sectors to support high-level business intelligence and reporting.</li>
+                    <li><strong>Strategic Architecture:</strong> Developed optimized data structures to ensure high performance and data integrity across multi-tenant environments at scale.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+                <div class="tl-top">
+                    <div class="tl-role">Data Engineering Intern</div>
+                    <div class="tl-badge">Apr 2024 – Jun 2025</div>
+                </div>
+                <div class="tl-company">Conversight.ai</div>
+                <div class="tl-date">14 Months · Coimbatore, Tamil Nadu</div>
+                <ul class="tl-list">
+                    <li><strong>ETL Automation:</strong> Built automated pipelines syncing ERP and CRM data using Python and GCP Cloud Run, eliminating manual processing overhead.</li>
+                    <li><strong>Event-Driven Systems:</strong> Integrated NATS messaging for real-time data streaming, improving pipeline responsiveness significantly.</li>
+                    <li><strong>Cloud Optimization:</strong> Leveraged Google Cloud Run serverless architecture to improve reliability while reducing compute costs.</li>
+                    <li><strong>Warehouse Management:</strong> Managed schema design and query optimization for complex analytical workloads.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DOMAINS -->
+<div class="sec fade-up" id="domains">
+    <div class="sec-tag">Domains</div>
+    <h2 class="sec-title">Industry Expertise</h2>
+    <div class="sec-bar"></div>
+    <div class="domains-grid">
+        <div class="domain-card">
+            <div class="domain-emoji">💰</div>
+            <div class="domain-name">Finance Analytics</div>
+            <div class="domain-desc">Designed financial data models supporting P&L reporting, budgeting, and forecasting for enterprise clients. Ensuring accuracy and compliance in financial data pipelines.</div>
+        </div>
+        <div class="domain-card">
+            <div class="domain-emoji">🚛</div>
+            <div class="domain-name">Supply Chain Analytics</div>
+            <div class="domain-desc">Built end-to-end supply chain data models tracking inventory, procurement, logistics, and vendor performance to optimize operational decision-making.</div>
+        </div>
+        <div class="domain-card">
+            <div class="domain-emoji">🏗️</div>
+            <div class="domain-name">Construction Data Modeling</div>
+            <div class="domain-desc">Developed data structures for construction project tracking, resource allocation, cost management, and milestone reporting across multi-site environments.</div>
+        </div>
+    </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="sec fade-up" id="education" style="background: var(--bg2); max-width: 100%; padding-left: 0; padding-right: 0;">
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 3rem;">
+        <div class="sec-tag">Education</div>
+        <h2 class="sec-title">Academic Background</h2>
+        <div class="sec-bar"></div>
+        <div class="edu-grid">
+            <div class="edu-card">
+                <div class="edu-ico"><i class="fas fa-graduation-cap"></i></div>
+                <div class="edu-deg">B.Tech — AI & Data Science</div>
+                <div class="edu-school">Sri Shakthi Institute of Engineering and Technology</div>
+                <div class="edu-meta"><span>Oct 2021 – Apr 2025</span><span>CGPA: 7.6</span></div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-ico"><i class="fas fa-school"></i></div>
+                <div class="edu-deg">Higher Secondary (HSC)</div>
+                <div class="edu-school">Andrews Matric. Hr. Sec. School</div>
+                <div class="edu-meta"><span>2021</span><span>85%</span></div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-ico"><i class="fas fa-book-open"></i></div>
+                <div class="edu-deg">Secondary School (SSLC)</div>
+                <div class="edu-school">Andrews Matric. Hr. Sec. School</div>
+                <div class="edu-meta"><span>2019</span><span>80.2%</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AWARDS -->
+<div class="sec fade-up" id="awards">
+    <div class="sec-tag">Recognition</div>
+    <h2 class="sec-title">Honors & Awards</h2>
+    <div class="sec-bar"></div>
+    <div class="awards-grid">
+        <div class="award-card">
+            <div class="award-ico-wrap">🏆</div>
+            <div>
+                <div class="award-title">Best Intern Award</div>
+                <div class="award-desc">Recognized for outstanding performance in automating complex data pipelines, significantly reducing manual data processing at Conversight.ai.</div>
+            </div>
+        </div>
+        <div class="award-card">
+            <div class="award-ico-wrap">⭐</div>
+            <div>
+                <div class="award-title">Award of Excellence</div>
+                <div class="award-desc">Received for consistent technical excellence and high-impact contributions to the data analytics team across multiple projects.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTACT -->
+<div class="sec fade-up" id="contact">
+    <div class="sec-tag">Contact</div>
+    <h2 class="sec-title">Let's Connect</h2>
+    <div class="sec-bar"></div>
+    <div class="contact-grid">
+        <div>
+            <div class="contact-intro">
+                <h3>Open to new opportunities</h3>
+                <p>Whether you have a data challenge to solve, a role that fits, or just want to chat about data — my inbox is open.</p>
+            </div>
+            <div class="contact-links">
+                <a href="mailto:benin.daniel@conversight.ai" class="c-link">
+                    <div class="ci"><i class="fas fa-envelope"></i></div>
+                    <span>benin.daniel@conversight.ai</span>
+                </a>
+                <a href="https://linkedin.com/in/benin-daniel-6a3944295" target="_blank" class="c-link">
+                    <div class="ci"><i class="fab fa-linkedin"></i></div>
+                    <span>linkedin.com/in/benin-daniel-6a3944295</span>
+                </a>
+                <div class="c-link" style="cursor:default">
+                    <div class="ci"><i class="fas fa-map-marker-alt"></i></div>
+                    <span>Coimbatore, Tamil Nadu, India</span>
+                </div>
+            </div>
+        </div>
+        <div class="cta-card">
+            <h3>Ready to collaborate?</h3>
+            <p>I'm passionate about turning messy data into clean insights. Let's build something meaningful together — from pipeline to dashboard.</p>
+            <a href="mailto:benin.daniel@conversight.ai" class="cta-btn">
+                <i class="fas fa-paper-plane"></i> Send a Message
+            </a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>Crafted by <strong>Benin Dougles Daniel D</strong> · Data Analyst Portfolio · Coimbatore, India</p>
+</footer>
+
+<script>
+    // Generate dots
+    const dotGrid = document.getElementById('dots');
+    if (dotGrid) {
+        for (let i = 0; i < 40; i++) {
+            const d = document.createElement('div');
+            d.className = 'deco-dot';
+            dotGrid.appendChild(d);
+        }
+    }
+
+    // Counter animation
+    function animateCount(el) {
+        const target = parseInt(el.dataset.target);
+        let current = 0;
+        const step = Math.ceil(target / 30);
+        const timer = setInterval(() => {
+            current = Math.min(current + step, target);
+            el.textContent = current;
+            if (current >= target) clearInterval(timer);
+        }, 40);
+    }
+
+    // Scroll fade + counter trigger
+    const obs = new IntersectionObserver(
+        es => es.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('show');
+                e.target.querySelectorAll('.counting').forEach(animateCount);
+            }
+        }),
+        { threshold: 0.1 }
+    );
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

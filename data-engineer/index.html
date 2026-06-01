@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benin Dougles Daniel D | Data Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --bg:      #050a14;
+            --bg2:     #0a1628;
+            --card:    #0d1f35;
+            --border:  #1a3a5c;
+            --cyan:    #00e5ff;
+            --purple:  #7c3aed;
+            --green:   #00ff87;
+            --text:    #b0c4de;
+            --bright:  #e8f4fd;
+            --heading: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 3px; }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            background: rgba(5,10,20,0.88);
+            border-bottom: 1px solid var(--border);
+            height: 62px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 3rem;
+        }
+        .nav-logo { font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; color: var(--cyan); font-weight: 700; }
+        .nav-logo span { color: var(--text); font-weight: 400; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--text); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; letter-spacing: 0.02em; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--cyan); }
+        .nav-switch {
+            font-size: 0.78rem; padding: 0.35rem 0.85rem;
+            border: 1px solid rgba(0,229,255,0.3); border-radius: 20px;
+            color: var(--cyan); text-decoration: none; font-family: 'JetBrains Mono', monospace;
+            transition: all 0.2s;
+        }
+        .nav-switch:hover { background: rgba(0,229,255,0.1); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            padding: 6rem 3rem 3rem; position: relative; overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at 15% 55%, rgba(0,229,255,0.09) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 15%, rgba(124,58,237,0.09) 0%, transparent 55%);
+        }
+        .grid-bg {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,229,255,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,229,255,0.035) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 1000px; width: 100%; }
+        .hero-pill {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+            color: var(--green); background: rgba(0,255,135,0.08);
+            border: 1px solid rgba(0,255,135,0.25); border-radius: 20px;
+            padding: 0.3rem 0.85rem; margin-bottom: 1.75rem;
+        }
+        .pill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+        .hero-layout { display: flex; align-items: center; gap: 4rem; }
+        .hero-text { flex: 1; }
+
+        .hero-image {
+            width: 210px; height: 210px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+            border: 2px solid var(--cyan);
+            box-shadow: 0 0 0 6px rgba(0,229,255,0.08), 0 0 50px rgba(0,229,255,0.25);
+        }
+        .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+
+        .hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 800; color: var(--heading); line-height: 1.1; margin-bottom: 0.75rem; }
+        .hero h1 .accent { color: var(--cyan); }
+        .hero-role {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.05rem;
+            color: var(--cyan); margin-bottom: 1.5rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .cursor { display: inline-block; width: 2px; height: 1.1em; background: var(--cyan); animation: blink 1s infinite; vertical-align: middle; }
+        @keyframes blink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+
+        .hero-bio { font-size: 0.98rem; line-height: 1.8; color: var(--text); max-width: 580px; margin-bottom: 2rem; }
+        .hero-bio strong { color: var(--bright); }
+
+        .hero-stats { display: flex; gap: 2.5rem; margin-bottom: 2.5rem; }
+        .stat-num { font-family: 'JetBrains Mono', monospace; font-size: 1.9rem; font-weight: 700; color: var(--cyan); }
+        .stat-label { font-size: 0.72rem; color: var(--text); text-transform: uppercase; letter-spacing: 0.1em; }
+
+        .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.88rem; text-decoration: none; transition: all 0.22s; }
+        .btn-solid { background: var(--cyan); color: #000; }
+        .btn-solid:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,229,255,0.4); }
+        .btn-outline { border: 1px solid var(--cyan); color: var(--cyan); }
+        .btn-outline:hover { background: rgba(0,229,255,0.1); transform: translateY(-2px); }
+
+        /* ── SECTION WRAPPER ── */
+        .section-wrap { padding: 5.5rem 3rem; max-width: 1100px; margin: 0 auto; }
+        .section-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.4rem; }
+        .section-title { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; color: var(--heading); margin-bottom: 0.4rem; }
+        .section-bar { width: 56px; height: 3px; background: linear-gradient(90deg, var(--cyan), var(--purple)); border-radius: 2px; margin-bottom: 3rem; }
+
+        /* ── ABOUT ── */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+        .about-text p { color: var(--text); line-height: 1.85; margin-bottom: 1rem; font-size: 0.97rem; }
+        .hl { color: var(--cyan); font-weight: 600; }
+        .mini-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .mini-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; transition: border-color 0.2s, transform 0.2s; }
+        .mini-card:hover { border-color: var(--cyan); transform: translateY(-3px); }
+        .mini-icon { font-size: 1.4rem; margin-bottom: 0.65rem; }
+        .mini-card h4 { color: var(--heading); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.3rem; }
+        .mini-card p { color: var(--text); font-size: 0.78rem; line-height: 1.5; }
+
+        /* ── SKILLS ── */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.5rem; }
+        .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: all 0.22s; }
+        .skill-card:hover { border-color: var(--cyan); transform: translateY(-4px); }
+        .skill-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.2rem; }
+        .skill-ico { width: 36px; height: 36px; border-radius: 8px; background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.25); display: flex; align-items: center; justify-content: center; color: var(--cyan); font-size: 0.95rem; }
+        .skill-name { color: var(--heading); font-weight: 600; font-size: 0.88rem; }
+        .tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+        .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; padding: 0.28rem 0.6rem; border-radius: 5px; background: rgba(0,229,255,0.07); border: 1px solid rgba(0,229,255,0.18); color: var(--cyan); transition: all 0.2s; }
+        .tag:hover { background: rgba(0,229,255,0.15); border-color: var(--cyan); }
+
+        /* ── TIMELINE ── */
+        .timeline { position: relative; padding-left: 2.25rem; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--cyan), var(--purple), rgba(0,229,255,0.05)); }
+        .tl-item { position: relative; margin-bottom: 2.75rem; }
+        .tl-dot { position: absolute; left: -2.5rem; top: 0.3rem; width: 14px; height: 14px; border-radius: 50%; background: var(--cyan); border: 3px solid var(--bg); box-shadow: 0 0 10px rgba(0,229,255,0.55); }
+        .tl-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; transition: border-color 0.22s; }
+        .tl-card:hover { border-color: var(--cyan); }
+        .tl-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.35rem; }
+        .tl-role { font-size: 1.08rem; font-weight: 700; color: var(--heading); }
+        .tl-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; padding: 0.25rem 0.7rem; border-radius: 20px; background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.25); color: var(--cyan); white-space: nowrap; }
+        .tl-company { font-size: 0.88rem; color: var(--cyan); font-weight: 500; margin-bottom: 0.2rem; }
+        .tl-date { font-family: 'JetBrains Mono', monospace; font-size: 0.77rem; color: var(--text); margin-bottom: 1rem; }
+        .tl-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+        .tl-list li { padding-left: 1.25rem; position: relative; font-size: 0.89rem; line-height: 1.65; color: var(--text); }
+        .tl-list li::before { content: '▸'; position: absolute; left: 0; color: var(--cyan); }
+        .tl-list strong { color: var(--bright); }
+
+        /* ── EDU ── */
+        .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 1.5rem; }
+        .edu-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: all 0.22s; }
+        .edu-card:hover { border-color: var(--cyan); transform: translateY(-3px); }
+        .edu-ico { font-size: 1.4rem; color: var(--cyan); margin-bottom: 0.85rem; }
+        .edu-deg { font-size: 0.93rem; font-weight: 700; color: var(--heading); margin-bottom: 0.25rem; }
+        .edu-school { font-size: 0.82rem; color: var(--cyan); margin-bottom: 0.6rem; }
+        .edu-meta { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text); }
+
+        /* ── AWARDS ── */
+        .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.5rem; }
+        .award-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; position: relative; overflow: hidden; transition: all 0.22s; }
+        .award-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--cyan), var(--purple)); }
+        .award-card:hover { transform: translateY(-4px); border-color: rgba(0,229,255,0.5); }
+        .award-emoji { font-size: 2rem; margin-bottom: 0.85rem; }
+        .award-title { font-size: 1rem; font-weight: 700; color: var(--heading); margin-bottom: 0.5rem; }
+        .award-desc { font-size: 0.86rem; color: var(--text); line-height: 1.65; }
+
+        /* ── CONTACT ── */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+        .contact-links { display: flex; flex-direction: column; gap: 0.85rem; }
+        .c-link { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--text); padding: 1rem 1.25rem; background: var(--card); border: 1px solid var(--border); border-radius: 10px; transition: all 0.22s; }
+        .c-link:hover { border-color: var(--cyan); color: var(--cyan); transform: translateX(5px); }
+        .c-link i { font-size: 1.15rem; color: var(--cyan); width: 20px; text-align: center; }
+        .terminal { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; font-family: 'JetBrains Mono', monospace; }
+        .term-bar { padding: 0.7rem 1rem; background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.45rem; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .d-r{background:#ff5f56} .d-y{background:#ffbd2e} .d-g{background:#27c93f}
+        .term-body { padding: 1.5rem; font-size: 0.83rem; color: var(--text); line-height: 2.1; }
+        .t-p{color:var(--cyan)} .t-k{color:#a78bfa} .t-v{color:var(--green)}
+
+        /* ── FOOTER ── */
+        footer { text-align: center; padding: 2rem 3rem; border-top: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text); }
+        footer span { color: var(--cyan); }
+
+        /* ── ANIMATIONS ── */
+        .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+        .fade-up.show { opacity: 1; transform: translateY(0); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav { padding: 0 1.25rem; }
+            .nav-links { display: none; }
+            .hero { padding: 6rem 1.25rem 3rem; }
+            .hero-layout { flex-direction: column-reverse; text-align: center; }
+            .hero-image { width: 150px; height: 150px; }
+            .hero-stats { justify-content: center; }
+            .hero-btns { justify-content: center; }
+            .section-wrap { padding: 4rem 1.25rem; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; }
+            .mini-cards { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-logo">benin<span>.dev</span></div>
+    <ul class="nav-links">
+        <li><a href="#about">about</a></li>
+        <li><a href="#skills">skills</a></li>
+        <li><a href="#experience">experience</a></li>
+        <li><a href="#education">education</a></li>
+        <li><a href="#contact">contact</a></li>
+    </ul>
+    <a href="../data-analyst/index.html" class="nav-switch">Switch → Analyst</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="grid-bg"></div>
+    <div class="hero-content">
+        <div class="hero-pill">
+            <span class="pill-dot"></span> Open to Opportunities
+        </div>
+        <div class="hero-layout">
+            <div class="hero-text">
+                <h1>Benin Dougles<br><span class="accent">Daniel D</span></h1>
+                <div class="hero-role">$ <span id="typed"></span><span class="cursor"></span></div>
+                <p class="hero-bio">
+                    Detail-oriented Data Professional with <strong>21 months of experience</strong>
+                    automating complex data workflows and building scalable cloud architectures.
+                    Expert in <strong>Python, Apache Airflow, and GCP</strong>, designing end-to-end
+                    systems that process, transform, and deliver data at scale.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-num">21</div>
+                        <div class="stat-label">Months Exp</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num">5+</div>
+                        <div class="stat-label">Pipelines Built</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num">3</div>
+                        <div class="stat-label">Cloud Projects</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num">2</div>
+                        <div class="stat-label">Awards</div>
+                    </div>
+                </div>
+                <div class="hero-btns">
+                    <a href="../assets/resume.pdf" download class="btn btn-solid">
+                        <i class="fas fa-download"></i> Download Resume
+                    </a>
+                    <a href="https://linkedin.com/in/benin-daniel-6a3944295" target="_blank" class="btn btn-outline">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="mailto:benin.daniel@conversight.ai" class="btn btn-outline">
+                        <i class="fas fa-envelope"></i> Email Me
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="../assets/profile.jpeg" alt="Benin Dougles Daniel D">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section-wrap fade-up" id="about">
+    <div class="section-tag">// about me</div>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="section-bar"></div>
+    <div class="about-grid">
+        <div class="about-text">
+            <p>
+                I'm a <span class="hl">Data Engineer</span> based in Coimbatore, Tamil Nadu,
+                passionate about building robust, observable data infrastructure that powers
+                intelligent business decisions.
+            </p>
+            <p>
+                At <span class="hl">Conversight.ai</span>, I engineered automated ETL pipelines
+                syncing data from ERP and CRM platforms, integrated event-driven architectures
+                using NATS messaging, and leveraged Google Cloud Run for serverless data processing.
+            </p>
+            <p>
+                My philosophy: pipelines should be <span class="hl">fault-tolerant, observable,
+                and maintainable</span> — engineered to scale as data volumes grow without
+                accumulating technical debt.
+            </p>
+        </div>
+        <div class="mini-cards">
+            <div class="mini-card">
+                <div class="mini-icon">🔧</div>
+                <h4>Pipeline Design</h4>
+                <p>End-to-end ETL/ELT from ingestion to transformation and loading</p>
+            </div>
+            <div class="mini-card">
+                <div class="mini-icon">☁️</div>
+                <h4>Cloud Native</h4>
+                <p>GCP Cloud Run, serverless compute, infrastructure optimization</p>
+            </div>
+            <div class="mini-card">
+                <div class="mini-icon">📡</div>
+                <h4>Event Streaming</h4>
+                <p>Real-time data flows with NATS messaging systems</p>
+            </div>
+            <div class="mini-card">
+                <div class="mini-icon">🗄️</div>
+                <h4>Warehouse Mgmt</h4>
+                <p>Schema design, query optimization, multi-tenant environments</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SKILLS -->
+<div class="section-wrap fade-up" id="skills">
+    <div class="section-tag">// tech stack</div>
+    <h2 class="section-title">Skills & Tools</h2>
+    <div class="section-bar"></div>
+    <div class="skills-grid">
+        <div class="skill-card">
+            <div class="skill-head">
+                <div class="skill-ico"><i class="fas fa-code"></i></div>
+                <div class="skill-name">Languages</div>
+            </div>
+            <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">SQL</span>
+                <span class="tag">MySQL</span>
+            </div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-head">
+                <div class="skill-ico"><i class="fas fa-stream"></i></div>
+                <div class="skill-name">Data Engineering</div>
+            </div>
+            <div class="tags">
+                <span class="tag">Apache Airflow</span>
+                <span class="tag">ETL / ELT Design</span>
+                <span class="tag">Data Modeling</span>
+                <span class="tag">Pipeline Automation</span>
+            </div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-head">
+                <div class="skill-ico"><i class="fab fa-google"></i></div>
+                <div class="skill-name">Cloud & Infrastructure</div>
+            </div>
+            <div class="tags">
+                <span class="tag">GCP Cloud Run</span>
+                <span class="tag">NATS Messaging</span>
+                <span class="tag">Docker</span>
+                <span class="tag">Serverless</span>
+            </div>
+        </div>
+        <div class="skill-card">
+            <div class="skill-head">
+                <div class="skill-ico"><i class="fas fa-layer-group"></i></div>
+                <div class="skill-name">Domain Expertise</div>
+            </div>
+            <div class="tags">
+                <span class="tag">Supply Chain</span>
+                <span class="tag">Financial Reporting</span>
+                <span class="tag">Construction Data</span>
+                <span class="tag">ERP / CRM Integration</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section-wrap fade-up" id="experience">
+    <div class="section-tag">// work history</div>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-bar"></div>
+    <div class="timeline">
+        <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+                <div class="tl-top">
+                    <div class="tl-role">Data Engineering Intern</div>
+                    <div class="tl-badge">Apr 2024 – Jun 2025</div>
+                </div>
+                <div class="tl-company">Conversight.ai</div>
+                <div class="tl-date">14 Months · Coimbatore, Tamil Nadu</div>
+                <ul class="tl-list">
+                    <li><strong>ETL Automation:</strong> Developed and maintained multiple automated ETL pipelines to sync data from various ERP and CRM platforms using Python and GCP Cloud Run.</li>
+                    <li><strong>Event-Driven Architecture:</strong> Integrated NATS messaging systems to handle real-time data streaming and improve pipeline responsiveness across services.</li>
+                    <li><strong>Cloud Optimization:</strong> Utilized serverless engineering in Google Cloud Run to process data tasks, increasing system reliability and reducing compute overhead.</li>
+                    <li><strong>Warehouse Management:</strong> Managed data warehouse schemas to ensure efficient query performance for complex analytical workloads.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- EDUCATION -->
+<div class="section-wrap fade-up" id="education">
+    <div class="section-tag">// academics</div>
+    <h2 class="section-title">Education</h2>
+    <div class="section-bar"></div>
+    <div class="edu-grid">
+        <div class="edu-card">
+            <div class="edu-ico"><i class="fas fa-graduation-cap"></i></div>
+            <div class="edu-deg">B.Tech — AI & Data Science</div>
+            <div class="edu-school">Sri Shakthi Institute of Engineering and Technology</div>
+            <div class="edu-meta"><span>Oct 2021 – Apr 2025</span><span>CGPA: 7.6</span></div>
+        </div>
+        <div class="edu-card">
+            <div class="edu-ico"><i class="fas fa-school"></i></div>
+            <div class="edu-deg">Higher Secondary (HSC)</div>
+            <div class="edu-school">Andrews Matric. Hr. Sec. School</div>
+            <div class="edu-meta"><span>2021</span><span>85%</span></div>
+        </div>
+        <div class="edu-card">
+            <div class="edu-ico"><i class="fas fa-book-open"></i></div>
+            <div class="edu-deg">Secondary School (SSLC)</div>
+            <div class="edu-school">Andrews Matric. Hr. Sec. School</div>
+            <div class="edu-meta"><span>2019</span><span>80.2%</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- AWARDS -->
+<div class="section-wrap fade-up" id="awards">
+    <div class="section-tag">// recognition</div>
+    <h2 class="section-title">Honors & Awards</h2>
+    <div class="section-bar"></div>
+    <div class="awards-grid">
+        <div class="award-card">
+            <div class="award-emoji">🏆</div>
+            <div class="award-title">Best Intern Award</div>
+            <div class="award-desc">Recognized for outstanding performance in automating complex data pipelines, significantly reducing manual data processing time at Conversight.ai.</div>
+        </div>
+        <div class="award-card">
+            <div class="award-emoji">⭐</div>
+            <div class="award-title">Award of Excellence</div>
+            <div class="award-desc">Received for consistent technical excellence and high-impact contributions to the data analytics team across multiple critical projects.</div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section-wrap fade-up" id="contact">
+    <div class="section-tag">// get in touch</div>
+    <h2 class="section-title">Contact</h2>
+    <div class="section-bar"></div>
+    <div class="contact-grid">
+        <div class="contact-links">
+            <a href="mailto:benin.daniel@conversight.ai" class="c-link">
+                <i class="fas fa-envelope"></i>
+                <span>benin.daniel@conversight.ai</span>
+            </a>
+            <a href="https://linkedin.com/in/benin-daniel-6a3944295" target="_blank" class="c-link">
+                <i class="fab fa-linkedin"></i>
+                <span>linkedin.com/in/benin-daniel-6a3944295</span>
+            </a>
+            <div class="c-link" style="cursor:default">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Coimbatore, Tamil Nadu, India</span>
+            </div>
+        </div>
+        <div class="terminal">
+            <div class="term-bar">
+                <div class="dot d-r"></div>
+                <div class="dot d-y"></div>
+                <div class="dot d-g"></div>
+            </div>
+            <div class="term-body">
+                <div><span class="t-p">~$ </span>cat contact.json</div>
+                <div>{</div>
+                <div>&nbsp;&nbsp;<span class="t-k">"name"</span>: <span class="t-v">"Benin Dougles Daniel D"</span>,</div>
+                <div>&nbsp;&nbsp;<span class="t-k">"role"</span>: <span class="t-v">"Data Engineer"</span>,</div>
+                <div>&nbsp;&nbsp;<span class="t-k">"location"</span>: <span class="t-v">"Coimbatore, TN"</span>,</div>
+                <div>&nbsp;&nbsp;<span class="t-k">"available"</span>: <span class="t-v">true</span></div>
+                <div>}</div>
+                <div><span class="t-p">~$ </span><span class="cursor"></span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>Crafted by <span>Benin Dougles Daniel D</span> · Data Engineer Portfolio · Coimbatore, India</p>
+</footer>
+
+<script>
+    // Typing animation
+    const phrases = ['Data Engineer', 'Pipeline Architect', 'Cloud Developer', 'ETL Specialist'];
+    let i = 0, c = 0, del = false;
+    const el = document.getElementById('typed');
+    function type() {
+        const s = phrases[i];
+        el.textContent = del ? s.slice(0, c--) : s.slice(0, c++);
+        if (!del && c === s.length + 1) { setTimeout(() => { del = true; type(); }, 2200); return; }
+        if (del && c < 0) { del = false; i = (i + 1) % phrases.length; }
+        setTimeout(type, del ? 55 : 95);
+    }
+    type();
+
+    // Scroll fade
+    const obs = new IntersectionObserver(
+        es => es.forEach(e => e.isIntersecting && e.target.classList.add('show')),
+        { threshold: 0.1 }
+    );
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
